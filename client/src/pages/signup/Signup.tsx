@@ -1,7 +1,6 @@
 import image1 from "./pic1.jpg";
 import "../../styles/signup/signup.scss";
 import { useState } from "react";
-import Login from "../login/Login";
 import { Link } from "react-router-dom";
 
 
