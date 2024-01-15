@@ -1,6 +1,8 @@
 import image1 from "./pic1.jpg";
 import "../../styles/signup/signup.scss";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 function Signup() {
   const [name, setName] = useState("");
@@ -16,6 +18,7 @@ function Signup() {
         <div className="signup-form">
           <h2>Create an account</h2>
           <p>Enter your details below </p>
+<<<<<<< HEAD
           {/* <br /> */}
           <div className="form">
             <div className="input-box">
@@ -60,8 +63,30 @@ function Signup() {
                 Create Account
               </button>
             </div>
+=======
+        <div className="form">
+          <div className="input-box" >
+            <input type="text" placeholder="Name"  value={name} />
           </div>
+          <div className="input-box">
+            <input type="email" placeholder="Email" value={email}/>
+          </div>
+          <div className="input-box">
+            <input type="password" placeholder="Password" value={password}/>
+>>>>>>> d0a0dbe7a8e684b6e1ff23e30b58822d5ee63e0d
+          </div>
+          <div className="input-box">
+            <button type="submit" >Create Account</button> 
+          </div>          
         </div>
+<<<<<<< HEAD
+=======
+        <p>Already have account? 
+          <Link to="/login" > Login</Link>
+        </p>
+
+      </div>    
+>>>>>>> d0a0dbe7a8e684b6e1ff23e30b58822d5ee63e0d
       </div>
     </div>
   );

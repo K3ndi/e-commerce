@@ -7,27 +7,28 @@ const Header: React.FC = () => {
 
   return (
     <div className="header">
-      <div>
+      <div className="logo">
         <a href="/">Logo </a>
       </div>
       
       <div className="nav">
-      <ul style={{display:"flex", marginLeft:"10px"}}>
-        <li style={{margin:"10px"}}>
+      <ul>
+        <li>
           <Link to="/">Home</Link>
         </li>
-        <li style={{margin:"10px"}}>
+        <li>
           <Link to="/contact">Contact Us</Link>
         </li>
-        <li style={{margin:"10px"}}>
+        <li>
           <Link to="/signup">Sign Up</Link>
         </li>
       </ul>
         </div>
-        <div className="search">
-          <input type="search" placeholder="Search" style={{width:'400px'}}/>
+        <div className="search" >
+          <input type="search" placeholder=" What are you looking for?" 
+            />
           
-          <button>  
+          <button >  
             <PersonOutlineIcon/>
           </button> 
         </div>
