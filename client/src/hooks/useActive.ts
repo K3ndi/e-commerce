@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const useActive = (initState) => {
   const [active, setActive] = useState(initState);
@@ -8,7 +8,7 @@ const useActive = (initState) => {
   };
 
   const activeClass = (i) => {
-    return active === i ? "active" : "";
+    return active === i ? 'active' : '';
   };
 
   return { active, handleActive, activeClass };

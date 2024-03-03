@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 import cartReducer from "./cartReducer";
 
 // Cart-Context
-const cartContext = createContext();
+const cartContext = createContext(undefined);
 
 // Initial State
 const initialState = {

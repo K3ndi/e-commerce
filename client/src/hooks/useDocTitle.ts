@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const useDocTitle = (title) => {
   useEffect(() => {
     if (title) {
       document.title = `${title} - Tech Zone`;
     } else {
-      document.title = "Tech Zone | The Perfect Tech Store";
+      document.title = 'Tech Zone | The Perfect Tech Store';
     }
   }, [title]);
 

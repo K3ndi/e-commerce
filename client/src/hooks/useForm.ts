@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import commonContext from "../contexts/common/commonContext";
+import { useContext, useState } from 'react';
+import commonContext from '../contexts/common/commonContext';
 
 const useForm = () => {
   const { toggleForm, setFormUserInfo } = useContext(commonContext);
@@ -19,7 +19,7 @@ const useForm = () => {
 
   // handling form-submission
   const handleFormSubmit = (e) => {
-    const loggedUserInfo = inputValues.mail.split("@")[0].toUpperCase();
+    const loggedUserInfo = inputValues.mail.split('@')[0].toUpperCase();
 
     e.preventDefault();
     setInputValues({});

@@ -2,7 +2,7 @@ import { createContext, useReducer } from "react";
 import commonReducer from "./commonReducer";
 
 // Common-Context
-const commonContext = createContext();
+const commonContext = createContext(undefined);
 
 // Initial State
 const initialState = {

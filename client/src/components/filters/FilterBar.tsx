@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { BiSort, BiFilterAlt } from "react-icons/bi";
-import filtersContext from "../../contexts/filters/filtersContext";
-import FilterBarOptions from "./FilterBarOptions";
+import React, { useContext } from 'react';
+import { BiSort, BiFilterAlt } from 'react-icons/bi';
+import filtersContext from '../../contexts/filters/filtersContext';
+import FilterBarOptions from './FilterBarOptions';
 
 const FilterBar = () => {
   const { handleMobSortVisibility, handleMobFilterVisibility } =

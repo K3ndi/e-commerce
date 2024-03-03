@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const useOutsideClose = (ref, handler) => {
   useEffect(() => {
@@ -8,10 +8,10 @@ const useOutsideClose = (ref, handler) => {
       }
     };
 
-    window.addEventListener("mousedown", outsideClose);
+    window.addEventListener('mousedown', outsideClose);
 
     return () => {
-      window.removeEventListener("mousedown", outsideClose);
+      window.removeEventListener('mousedown', outsideClose);
     };
   }, [ref, handler]);
 };
