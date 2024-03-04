@@ -1,6 +1,6 @@
-const express = require('express');
-const morgan = require('morgan');
-const AppError = require('./utils/appError');
+import express from 'express';
+import morgan from 'morgan';
+import AppError from './utils/appError.js';
 
 const app = express();
 
