@@ -7,41 +7,43 @@ import ProductCard from '../product/ProductCard';
 import 'swiper/scss';
 import 'swiper/scss/pagination';
 
+interface RelatedSliderProps {
+  category: string;
+}
 
-const RelatedSlider = (props) => {
+const RelatedSlider: React.FC<RelatedSliderProps> = (props) => {
+  const { category } = props;
 
-    const { category } = props;
+  const relatedProduct = productsData.filter(
+    (item) => item.category === category,
+  );
 
-    const relatedProduct = productsData.filter(item => item.category === category);
-
-    return (
-        <Swiper
-            modules={[Pagination, A11y]}
-            spaceBetween={10}
-            slidesPerView={"auto"}
-            pagination={{ clickable: true }}
-            breakpoints={{
-                480: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 2,
-                },
-                992: {
-                    slidesPerView: 4,
-                },
-            }}
-            className="related_swiper"
-        >
-            {
-                relatedProduct.map(item => (
-                    <SwiperSlide key={item.id}>
-                        <ProductCard {...item} />
-                    </SwiperSlide>
-                ))
-            }
-        </Swiper>
-    );
+  return (
+    <Swiper
+      modules={[Pagination, A11y]}
+      spaceBetween={10}
+      slidesPerView={'auto'}
+      pagination={{ clickable: true }}
+      breakpoints={{
+        480: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 4,
+        },
+      }}
+      className="related_swiper"
+    >
+      {relatedProduct.map((item) => (
+        <SwiperSlide key={item.id}>
+          <ProductCard {...item} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
 };
 
 export default RelatedSlider;

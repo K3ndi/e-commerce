@@ -1,12 +1,31 @@
-import { useContext, useState } from 'react';
-import commonContext from '../contexts/common/commonContext';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setFormUserInfo, toggleForm } from '../store/shared/shared.slice';
 
-const useForm = () => {
-  const { toggleForm, setFormUserInfo } = useContext(commonContext);
-  const [inputValues, setInputValues] = useState({});
+interface InputValuesState {
+  username: string;
+  mail: string;
+  password: string;
+  conf_password: string;
+}
 
+interface useFormReturnTypes {
+  inputValues: InputValuesState;
+  handleInputValues: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+const useForm = (): useFormReturnTypes => {
+  const [inputValues, setInputValues] = useState<InputValuesState>({
+    username: '',
+    mail: '',
+    password: '',
+    conf_password: '',
+  });
+
+  const dispatch = useDispatch();
   // handling input-values
-  const handleInputValues = (e) => {
+  const handleInputValues = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
 
     setInputValues((prevValues) => {
@@ -18,13 +37,22 @@ const useForm = () => {
   };
 
   // handling form-submission
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     const loggedUserInfo = inputValues.mail.split('@')[0].toUpperCase();
 
     e.preventDefault();
-    setInputValues({});
-    setFormUserInfo(loggedUserInfo);
-    toggleForm(false);
+
+    setInputValues({
+      username: '',
+      mail: '',
+      password: '',
+      conf_password: '',
+    });
+
+    dispatch(setFormUserInfo(loggedUserInfo));
+
+    dispatch(toggleForm(false));
+
     alert(`Hello ${loggedUserInfo}, you're successfully logged-in.`);
   };
 

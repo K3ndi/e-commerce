@@ -1,16 +1,15 @@
-import React, { useContext } from "react";
-import { BsExclamationCircle } from "react-icons/bs";
-import useDocTitle from "../hooks/useDocTitle";
-import FilterBar from "../components/filters/FilterBar";
-import ProductCard from "../components/product/ProductCard";
-import Services from "../components/common/Services";
-import filtersContext from "../contexts/filters/filtersContext";
-import EmptyView from "../components/common/EmptyView";
+import React from 'react';
+import { BsExclamationCircle } from 'react-icons/bs';
+import useDocTitle from '../hooks/useDocTitle';
+import FilterBar from '../components/filters/FilterBar';
+import ProductCard from '../components/product/ProductCard';
+import Services from '../components/common/Services';
+import EmptyView from '../components/common/EmptyView';
 
-const AllProducts = () => {
-  useDocTitle("All Products");
+const AllProducts: React.FC = () => {
+  useDocTitle('All Products');
 
-  const { allProducts } = useContext(filtersContext);
+  const allProducts: any[] = [];
 
   return (
     <>

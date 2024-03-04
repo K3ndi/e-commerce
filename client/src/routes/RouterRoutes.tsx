@@ -1,13 +1,13 @@
-import React from "react";
-import { Routes, Route } from "react-router";
-import useScrollRestore from "../hooks/useScrollRestore";
-import AllProducts from "../pages/AllProducts";
-import Cart from "../pages/Cart";
-import Home from "../pages/Home";
-import ProductDetails from "../pages/ProductDetails";
-import ErrorPage from "../pages/ErrorPage";
+import React from 'react';
+import { Routes, Route } from 'react-router';
+import useScrollRestore from '../hooks/useScrollRestore';
+import AllProducts from '../pages/AllProducts';
+import Cart from '../pages/Cart';
+import Home from '../pages/Home';
+import ProductDetails from '../pages/ProductDetails';
+import ErrorPage from '../pages/ErrorPage';
 
-const RouterRoutes = () => {
+const RouterRoutes: React.FC = () => {
   useScrollRestore();
 
   return (

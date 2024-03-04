@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-const useOutsideClose = (ref, handler) => {
+const useOutsideClose = (ref: any, handler: any): void => {
   useEffect(() => {
-    const outsideClose = (e) => {
+    const outsideClose = (e: any): any => {
       if (ref.current && !ref.current.contains(e.target)) {
         handler();
       }

@@ -1,38 +1,34 @@
-import React, { useContext, useRef } from "react";
-import { Link } from "react-router-dom";
-import commonContext from "../../contexts/common/commonContext";
-import productsData from "../../data/productsData";
-import useOutsideClose from "../../hooks/useOutsideClose";
-import useScrollDisable from "../../hooks/useScrollDisable";
+import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import productsData from '../../data/productsData';
+import useOutsideClose from '../../hooks/useOutsideClose';
+import useScrollDisable from '../../hooks/useScrollDisable';
 // import { AiOutlineSearch } from 'react-icons/ai';
 
-const SearchBar = () => {
-  const { isSearchOpen, toggleSearch, searchResults, setSearchResults } =
-    useContext(commonContext);
+const SearchBar: React.FC = () => {
+  const searchRef = useRef(null);
 
-  const searchRef = useRef();
+  const isSearchOpen = false;
 
+  const searchResults: any[] = [];
   // closing the SearchBar
-  const closeSearch = () => {
-    toggleSearch(false);
-    setSearchResults([]);
+  const closeSearch = (): void => {
+    console.log('ERE');
   };
 
   useOutsideClose(searchRef, closeSearch);
 
-  useScrollDisable(isSearchOpen);
+  useScrollDisable(true);
 
   // handling Search
-  const handleSearching = (e) => {
+  const handleSearching = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const searchedTerm = e.target.value.toLowerCase().trim();
 
     const updatedSearchResults = productsData.filter((item) =>
-      item.title.toLowerCase().includes(searchedTerm)
+      item.title.toLowerCase().includes(searchedTerm),
     );
 
-    searchedTerm === ""
-      ? setSearchResults([])
-      : setSearchResults(updatedSearchResults);
+    searchedTerm === '' ? console.log('here') : console.log('here');
   };
 
   return (

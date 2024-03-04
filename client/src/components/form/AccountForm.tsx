@@ -1,18 +1,26 @@
-import React, { useContext, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import commonContext from "../../contexts/common/commonContext";
-import useForm from "../../hooks/useForm";
-import useOutsideClose from "../../hooks/useOutsideClose";
-import useScrollDisable from "../../hooks/useScrollDisable";
+import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import useForm from '../../hooks/useForm';
+import useOutsideClose from '../../hooks/useOutsideClose';
+import useScrollDisable from '../../hooks/useScrollDisable';
+import { useAppSelector } from '../../store/hooks';
+import { selectIsFormOpen, toggleForm } from '../../store/shared/shared.slice';
+import { useDispatch } from 'react-redux';
 
-const AccountForm = () => {
-  const { isFormOpen, toggleForm } = useContext(commonContext);
+const AccountForm: React.FC = () => {
   const { inputValues, handleInputValues, handleFormSubmit } = useForm();
 
-  const formRef = useRef();
+  const isFormOpen = useAppSelector(selectIsFormOpen);
+  const dispatch = useDispatch();
+
+  const onToggleForm = (value: boolean) => (): void => {
+    dispatch(toggleForm(value));
+  };
+
+  const formRef = useRef(null);
 
   useOutsideClose(formRef, () => {
-    toggleForm(false);
+    dispatch(toggleForm(false));
   });
 
   useScrollDisable(isFormOpen);
@@ -20,7 +28,7 @@ const AccountForm = () => {
   const [isSignupVisible, setIsSignupVisible] = useState(false);
 
   // Signup-form visibility toggling
-  const handleIsSignupVisible = () => {
+  const handleIsSignupVisible = (): void => {
     setIsSignupVisible((prevState) => !prevState);
   };
 
@@ -32,14 +40,14 @@ const AccountForm = () => {
             <form id="account_form" ref={formRef} onSubmit={handleFormSubmit}>
               {/*===== Form-Header =====*/}
               <div className="form_head">
-                <h2>{isSignupVisible ? "Signup" : "Login"}</h2>
+                <h2>{isSignupVisible ? 'Signup' : 'Login'}</h2>
                 <p>
                   {isSignupVisible
-                    ? "Already have an account ?"
-                    : "New to Tech Zone ?"}
+                    ? 'Already have an account ?'
+                    : 'New to Tech Zone ?'}
                   &nbsp;&nbsp;
                   <button type="button" onClick={handleIsSignupVisible}>
-                    {isSignupVisible ? "Login" : "Create an account"}
+                    {isSignupVisible ? 'Login' : 'Create an account'}
                   </button>
                 </p>
               </div>
@@ -52,7 +60,7 @@ const AccountForm = () => {
                       type="text"
                       name="username"
                       className="input_field"
-                      value={inputValues.username || ""}
+                      value={inputValues.username || ''}
                       onChange={handleInputValues}
                       required
                     />
@@ -65,7 +73,7 @@ const AccountForm = () => {
                     type="email"
                     name="mail"
                     className="input_field"
-                    value={inputValues.mail || ""}
+                    value={inputValues.mail || ''}
                     onChange={handleInputValues}
                     required
                   />
@@ -77,7 +85,7 @@ const AccountForm = () => {
                     type="password"
                     name="password"
                     className="input_field"
-                    value={inputValues.password || ""}
+                    value={inputValues.password || ''}
                     onChange={handleInputValues}
                     required
                   />
@@ -90,7 +98,7 @@ const AccountForm = () => {
                       type="password"
                       name="conf_password"
                       className="input_field"
-                      value={inputValues.conf_password || ""}
+                      value={inputValues.conf_password || ''}
                       onChange={handleInputValues}
                       required
                     />
@@ -99,7 +107,7 @@ const AccountForm = () => {
                 )}
 
                 <button type="submit" className="btn login_btn">
-                  {isSignupVisible ? "Signup" : "Login"}
+                  {isSignupVisible ? 'Signup' : 'Login'}
                 </button>
               </div>
 
@@ -117,7 +125,7 @@ const AccountForm = () => {
               <div
                 className="close_btn"
                 title="Close"
-                onClick={() => toggleForm(false)}
+                onClick={onToggleForm(false)}
               >
                 &times;
               </div>

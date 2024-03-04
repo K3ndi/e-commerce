@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { FaChevronUp } from "react-icons/fa";
+import React, { useEffect, useState } from 'react';
+import { FaChevronUp } from 'react-icons/fa';
 
-const BackTop = () => {
+const BackTop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   // back-to-top visibility toggling
   useEffect(() => {
-    const handleScroll = () =>
+    const handleScroll = (): void =>
       window.scrollY >= 800 ? setIsVisible(true) : setIsVisible(false);
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   // back-to-top functionality
-  const handleBackTop = () => {
+  const handleBackTop = (): void => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
   return (
     <>
       <div
-        className={`back_top ${isVisible ? "popped" : ""}`}
+        className={`back_top ${isVisible ? 'popped' : ''}`}
         title="Back to top"
         onClick={handleBackTop}
       >

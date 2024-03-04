@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const useDocTitle = (title) => {
+const useDocTitle = (title: string): any => {
   useEffect(() => {
     if (title) {
       document.title = `${title} - Tech Zone`;

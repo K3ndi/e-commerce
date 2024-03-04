@@ -1,13 +1,19 @@
 import { useState } from 'react';
 
-const useActive = (initState) => {
+interface useActiveProps {
+  active: string;
+  handleActive: (i: string) => void;
+  activeClass: (i: string) => string;
+}
+
+const useActive = (initState: any): useActiveProps => {
   const [active, setActive] = useState(initState);
 
-  const handleActive = (i) => {
+  const handleActive = (i: string): void => {
     setActive(i);
   };
 
-  const activeClass = (i) => {
+  const activeClass = (i: string): string => {
     return active === i ? 'active' : '';
   };
 

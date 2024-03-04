@@ -1,25 +1,18 @@
-import React, { useContext } from "react";
-import filtersContext from "../../contexts/filters/filtersContext";
-import { sortMenu } from "../../data/filterBarData";
-import { displayMoney } from "../../helpers/utils";
+import React from 'react';
+import { sortMenu } from '../../data/filterBarData';
+import { displayMoney } from '../../helpers/utils';
 
-const FilterBarOptions = () => {
-  const {
-    sortedValue,
-    setSortedValue,
-    updatedBrandsMenu,
-    updatedCategoryMenu,
-    handleBrandsMenu,
-    handleCategoryMenu,
-    handlePrice,
-    selectedPrice: { price, minPrice, maxPrice },
-    mobFilterBar: { isMobSortVisible, isMobFilterVisible },
-    handleMobSortVisibility,
-    handleMobFilterVisibility,
-    handleClearFilters,
-  } = useContext(filtersContext);
+const FilterBarOptions: React.FC = () => {
+  const displayPrice = displayMoney(21);
+  const sortedValue = '';
 
-  const displayPrice = displayMoney(price);
+  const handleClearFilters = (): void => {
+    console.log('dfskfds');
+  };
+
+  const isMobSortVisible = false;
+
+  const updatedBrandsMenu: any[] = [];
 
   return (
     <>
@@ -33,13 +26,13 @@ const FilterBarOptions = () => {
       )}
 
       {/*===== Sort-menu =====*/}
-      <div className={`sort_options ${isMobSortVisible ? "show" : ""}`}>
+      <div className={`sort_options ${isMobSortVisible ? 'show' : ''}`}>
         <div className="sort_head">
           <h3 className="title">Sort By</h3>
           <button
             type="button"
             className="close_btn"
-            onClick={() => handleMobSortVisibility(false)}
+            onClick={handleClearFilters}
           >
             &times;
           </button>
@@ -53,8 +46,8 @@ const FilterBarOptions = () => {
             return (
               <li
                 key={id}
-                className={sortedValue === title ? "active" : ""}
-                onClick={() => setSortedValue(title)}
+                className={sortedValue === title ? 'active' : ''}
+                onClick={handleClearFilters}
               >
                 {title}
               </li>
@@ -64,13 +57,13 @@ const FilterBarOptions = () => {
       </div>
 
       {/*===== Filter-menu =====*/}
-      <div className={`filter_options ${isMobFilterVisible ? "show" : ""}`}>
+      <div className={`filter_options ${isMobSortVisible ? 'show' : ''}`}>
         <div className="filter_head">
           <h3 className="title">Filter By</h3>
           <button
             type="button"
             className="close_btn"
-            onClick={() => handleMobFilterVisibility(false)}
+            onClick={handleClearFilters}
           >
             &times;
           </button>
@@ -91,7 +84,7 @@ const FilterBarOptions = () => {
                     id={label}
                     value={label}
                     checked={checked}
-                    onChange={() => handleBrandsMenu(id)}
+                    onChange={handleClearFilters}
                   />
                   <label htmlFor={label}>{label}</label>
                 </li>
@@ -104,7 +97,7 @@ const FilterBarOptions = () => {
         <div className="filter_block">
           <h4>Category</h4>
           <ul className="filter_menu">
-            {updatedCategoryMenu.map((item) => {
+            {updatedBrandsMenu.map((item) => {
               const { id, checked, label } = item;
               return (
                 <li key={id} className="filter_btn">
@@ -113,7 +106,7 @@ const FilterBarOptions = () => {
                     id={label}
                     value={label}
                     checked={checked}
-                    onChange={() => handleCategoryMenu(id)}
+                    onChange={handleClearFilters}
                   />
                   <label htmlFor={label}>{label}</label>
                 </li>
@@ -129,10 +122,10 @@ const FilterBarOptions = () => {
             <p>{displayPrice}</p>
             <input
               type="range"
-              min={minPrice}
-              max={maxPrice}
-              value={price}
-              onChange={handlePrice}
+              min={12}
+              max={31}
+              value={3}
+              onChange={handleClearFilters}
             />
           </div>
         </div>

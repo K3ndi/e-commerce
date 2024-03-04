@@ -1,38 +1,52 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   AiOutlineSearch,
   AiOutlineShoppingCart,
   AiOutlineUser,
-} from "react-icons/ai";
-import { dropdownMenu } from "../../data/headerData";
-import commonContext from "../../contexts/common/commonContext";
-import cartContext from "../../contexts/cart/cartContext";
-import AccountForm from "../form/AccountForm";
-import SearchBar from "./SearchBar";
+} from 'react-icons/ai';
+import { dropdownMenu } from '../../data/headerData';
+import AccountForm from '../form/AccountForm';
+import SearchBar from './SearchBar';
+import { useAppSelector } from '../../store/hooks';
+import {
+  selectFormUserInfo,
+  toggleForm,
+  toggleSearch,
+} from '../../store/shared/shared.slice';
+import { useDispatch } from 'react-redux';
 
-const Header = () => {
-  const { formUserInfo, toggleForm, toggleSearch } = useContext(commonContext);
-  const { cartItems } = useContext(cartContext);
+const Header: React.FC = () => {
+  const formUserInfo = useAppSelector(selectFormUserInfo);
+
+  const dispatch = useDispatch();
   const [isSticky, setIsSticky] = useState(false);
+
+  const onToggleForm = (): void => {
+    dispatch(toggleForm(true));
+  };
+
+  const onToggleSearch = (): void => {
+    dispatch(toggleSearch(true));
+  };
 
   // handle the sticky-header
   useEffect(() => {
-    const handleIsSticky = () =>
+    const handleIsSticky = (): void =>
       window.scrollY >= 50 ? setIsSticky(true) : setIsSticky(false);
 
-    window.addEventListener("scroll", handleIsSticky);
+    window.addEventListener('scroll', handleIsSticky);
 
     return () => {
-      window.removeEventListener("scroll", handleIsSticky);
+      window.removeEventListener('scroll', handleIsSticky);
     };
   }, [isSticky]);
 
-  const cartQuantity = cartItems.length;
+  const cartQuantity = 3;
 
   return (
     <>
-      <header id="header" className={isSticky ? "sticky" : ""}>
+      <header id="header" className={isSticky ? 'sticky' : ''}>
         <div className="container">
           <div className="navbar">
             <h2 className="nav_logo">
@@ -40,7 +54,7 @@ const Header = () => {
             </h2>
             <nav className="nav_actions">
               <div className="search_action">
-                <span onClick={() => toggleSearch(true)}>
+                <span onClick={onToggleSearch}>
                   <AiOutlineSearch />
                 </span>
                 <div className="tooltip">Search</div>
@@ -62,12 +76,12 @@ const Header = () => {
                 </span>
                 <div className="dropdown_menu">
                   <h4>
-                    Hello!{" "}
+                    Hello!{' '}
                     {formUserInfo && <Link to="*">&nbsp;{formUserInfo}</Link>}
                   </h4>
                   <p>Access account and manage orders</p>
                   {!formUserInfo && (
-                    <button type="button" onClick={() => toggleForm(true)}>
+                    <button type="button" onClick={onToggleForm}>
                       Login / Signup
                     </button>
                   )}

@@ -1,5 +1,5 @@
 // Display Money in Indian Format
-export const displayMoney = (n) => {
+export const displayMoney = (n: number): any => {
   const numFormat = new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
@@ -9,14 +9,17 @@ export const displayMoney = (n) => {
 };
 
 // Calculate Discount Percentage
-export const calculateDiscount = (discountedPrice, originalPrice) => {
+export const calculateDiscount = (
+  discountedPrice: number,
+  originalPrice: number,
+): number => {
   const discountedPercent = (discountedPrice / originalPrice) * 100;
 
   return Math.round(discountedPercent);
 };
 
 // Calculate Total Amount
-export const calculateTotal = (arr) => {
+export const calculateTotal = (arr: any[]): number => {
   const total = arr.reduce((accum, val) => accum + val, 0);
 
   return total;

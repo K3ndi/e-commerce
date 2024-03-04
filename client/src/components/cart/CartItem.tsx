@@ -1,15 +1,27 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { TbTrash } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import { displayMoney } from '../../helpers/utils';
-import cartContext from '../../contexts/cart/cartContext';
 import QuantityBox from '../common/QuantityBox';
 
-const CartItem = (props) => {
+interface CartItemProps {
+  id: number;
+  images: string[];
+  title: string;
+  info: string;
+  finalPrice: number;
+  originalPrice: number;
+  quantity: number;
+  path: string;
+}
+
+const CartItem: React.FC<CartItemProps> = (props) => {
   const { id, images, title, info, finalPrice, originalPrice, quantity, path } =
     props;
 
-  const { removeItem } = useContext(cartContext);
+  const removeItem = (idVal: number): void => {
+    console.log('TEST', idVal);
+  };
 
   const newPrice = displayMoney(finalPrice);
   const oldPrice = displayMoney(originalPrice);

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { footMenu, footSocial } from '../../data/footerData';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const [subValue, setSubValue] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setSubValue('');
     alert('Thankyou, you are subscribed to receive our daily newsletter');
@@ -48,11 +48,10 @@ const Footer = () => {
               <div className="foot_menu" key={id}>
                 <h4>{title}</h4>
                 <ul>
-                  {menu.map((item) => {
-                    const { id, link, path } = item;
+                  {menu.map((items) => {
                     return (
-                      <li key={id}>
-                        <Link to={path}>{link}</Link>
+                      <li key={items.id}>
+                        <Link to={items.path}>{items.link}</Link>
                       </li>
                     );
                   })}

@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BiSort, BiFilterAlt } from 'react-icons/bi';
-import filtersContext from '../../contexts/filters/filtersContext';
 import FilterBarOptions from './FilterBarOptions';
 
-const FilterBar = () => {
-  const { handleMobSortVisibility, handleMobFilterVisibility } =
-    useContext(filtersContext);
+const FilterBar: React.FC = () => {
+  const handleMobSortVisibility = (): void => {
+    console.log('JERE');
+  };
 
   return (
     <>
@@ -19,12 +19,12 @@ const FilterBar = () => {
       {/*===== Filterbar-mobile =====*/}
       <div id="filterbar_mob">
         <div className="filterbar_mob_wrapper">
-          <h3 className="title" onClick={() => handleMobSortVisibility(true)}>
+          <h3 className="title" onClick={handleMobSortVisibility}>
             <BiSort />
             <span>Sort</span>
           </h3>
           <span>|</span>
-          <h3 className="title" onClick={() => handleMobFilterVisibility(true)}>
+          <h3 className="title" onClick={handleMobSortVisibility}>
             <BiFilterAlt />
             <span>Filter</span>
           </h3>
