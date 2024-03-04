@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { footMenu, footSocial } from "../../data/footerData";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { footMenu, footSocial } from '../../data/footerData';
 
 const Footer = () => {
-  const [subValue, setSubValue] = useState("");
+  const [subValue, setSubValue] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubValue("");
-    alert("Thankyou, you are subscribed to receive our daily newsletter");
+    setSubValue('');
+    alert('Thankyou, you are subscribed to receive our daily newsletter');
   };
 
   const currYear = new Date().getFullYear();
